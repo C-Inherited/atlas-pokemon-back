@@ -7,6 +7,7 @@ import java.util.List;
 public interface ITrainerController {
 
     public List<TrainerDTO> getAllTrainers();
+    List<CompleteTrainerDto> getAllTrainersWithPokemon();
     public TrainerDTO getTrainer(Integer id);
     public CompleteTrainerDto getTrainerWithPokemon(Integer id);
     public TrainerDTO createTrainer(TrainerDTO trainerdto);

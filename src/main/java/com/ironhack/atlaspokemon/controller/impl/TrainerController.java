@@ -12,6 +12,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:4200")
 public class TrainerController implements ITrainerController {
 
     @Autowired
@@ -21,6 +22,12 @@ public class TrainerController implements ITrainerController {
     @ResponseStatus(HttpStatus.OK)
     public List<TrainerDTO> getAllTrainers() {
         return trainerService.getAllTrainers();
+    }
+
+    @GetMapping("/trainers/pokemon")
+    @ResponseStatus(HttpStatus.OK)
+    public List<CompleteTrainerDto> getAllTrainersWithPokemon() {
+        return trainerService.getAllTrainersWithPokemon();
     }
 
     @GetMapping("/trainer/{id}")

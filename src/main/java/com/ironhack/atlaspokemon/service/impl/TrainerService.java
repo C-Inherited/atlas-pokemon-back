@@ -23,6 +23,10 @@ public class TrainerService implements ITrainerService {
         return trainerRepository.findAll().stream().map(Trainer::toTrainerDto).collect(Collectors.toList());
     }
 
+    public List<CompleteTrainerDto> getAllTrainersWithPokemon() {
+        return trainerRepository.findAll().stream().map(Trainer::toCompleteTrainerDto).collect(Collectors.toList());
+    }
+
     public TrainerDTO getTrainerById(Integer id) {
         Trainer trainer = trainerRepository.findById(id).orElseThrow(() -> {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Trainer not found");
