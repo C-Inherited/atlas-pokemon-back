@@ -23,7 +23,7 @@ public class PokemonController implements IPokemonController {
         return pokemonService.addPokemon(pokemonDto);
     }
 
-    @PostMapping("/pokemon/{id}")
+    @DeleteMapping("/pokemon/{id}")
     @ResponseStatus(HttpStatus.OK)
     public void deletePokemon(@PathVariable(name = "id") Integer id) {
         pokemonService.deletePokemon(id);
