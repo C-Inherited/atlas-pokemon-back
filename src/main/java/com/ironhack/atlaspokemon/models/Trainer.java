@@ -23,7 +23,7 @@ public class Trainer {
 
 // se borran en cascada los pokemon y despues el trainer
 
-    @OneToMany(mappedBy = "trainer", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "trainer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Pokemon> team;
 
     public Trainer() {
