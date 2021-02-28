@@ -8,6 +8,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Entity
@@ -106,5 +107,18 @@ public class Trainer {
 
     public void setTeam(List<Pokemon> team) {
         this.team = team;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Trainer trainer = (Trainer) o;
+        return Objects.equals(id, trainer.id) && Objects.equals(name, trainer.name) && Objects.equals(hobby, trainer.hobby) && Objects.equals(age, trainer.age) && Objects.equals(imageUrl, trainer.imageUrl) && Objects.equals(team, trainer.team);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, hobby, age, imageUrl, team);
     }
 }

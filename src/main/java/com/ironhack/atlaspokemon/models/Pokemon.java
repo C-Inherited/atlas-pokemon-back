@@ -5,6 +5,7 @@ import com.ironhack.atlaspokemon.dto.CompletePokemonDto;
 import com.ironhack.atlaspokemon.dto.PokemonDto;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 public class Pokemon {
@@ -57,4 +58,16 @@ public class Pokemon {
         this.trainer = trainer;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pokemon pokemon = (Pokemon) o;
+        return Objects.equals(id, pokemon.id) && Objects.equals(pokemonId, pokemon.pokemonId) && Objects.equals(trainer, pokemon.trainer);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, pokemonId, trainer);
+    }
 }

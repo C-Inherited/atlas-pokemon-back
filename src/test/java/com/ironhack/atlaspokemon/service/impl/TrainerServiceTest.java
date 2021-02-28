@@ -16,10 +16,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.CompletableFuture;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -80,17 +82,34 @@ class TrainerServiceTest {
 
     @Test
     void getTrainerById() {
+        when(trainerRepository.findById(2)).thenReturn(Optional.of(trainers.get(1)));
+
+        TrainerDTO trainerDTO = trainerService.getTrainerById(2);
+
+        assertEquals(trainers.get(1).getName(), trainerDTO.getName());
     }
 
     @Test
     void getCompleteTrainerById() {
+
     }
 
     @Test
     void createTrainer() {
+        Trainer trainer = new Trainer(3, "Haku", "Being a human now", 15, "image-dog");
+        when(trainerRepository.save(trainer)).thenReturn(trainer);
+
+        TrainerDTO trainerDTO = trainerService.createTrainer(trainer.toTrainerDto());
+
+        assertEquals(trainerRepository.getOne(trainerDTO.getId()).getAge(), trainerDTO.getAge());
     }
 
     @Test
     void deleteTrainer() {
+        when(trainerRepository.findById(3)).thenReturn(Optional.of(new Trainer(3, "Haku", "Being a human now", 15, "image-dog")));
+
+        trainerService.deleteTrainer(3);
+
+        verify(trainerRepository).deleteById(3);
     }
 }
