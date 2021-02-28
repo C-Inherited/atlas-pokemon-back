@@ -46,7 +46,7 @@ public class TrainerService implements ITrainerService {
     }
 
     public void deleteTrainer(Integer id) {
-        Trainer trainer = trainerRepository.findById(id).orElseThrow(() -> {
+        trainerRepository.findById(id).orElseThrow(() -> {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Trainer not found");
         });
         trainerRepository.deleteById(id);
