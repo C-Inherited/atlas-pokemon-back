@@ -4,6 +4,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 public class TrainerDTO {
 
@@ -68,5 +69,18 @@ public class TrainerDTO {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TrainerDTO that = (TrainerDTO) o;
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(hobby, that.hobby) && Objects.equals(age, that.age) && Objects.equals(imageUrl, that.imageUrl);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, hobby, age, imageUrl);
     }
 }
