@@ -3,6 +3,7 @@ package com.ironhack.atlaspokemon.dto;
 import com.ironhack.atlaspokemon.models.Pokemon;
 
 import java.util.List;
+import java.util.Objects;
 
 public class CompleteTrainerDto {
 
@@ -71,5 +72,18 @@ public class CompleteTrainerDto {
 
     public void setTeam(List<PokemonDto> team) {
         this.team = team;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CompleteTrainerDto that = (CompleteTrainerDto) o;
+        return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(hobby, that.hobby) && Objects.equals(age, that.age) && Objects.equals(imageUrl, that.imageUrl) && Objects.equals(team, that.team);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, hobby, age, imageUrl, team);
     }
 }

@@ -1,7 +1,5 @@
 package com.ironhack.atlaspokemon.models;
 
-
-import com.ironhack.atlaspokemon.dto.CompletePokemonDto;
 import com.ironhack.atlaspokemon.dto.PokemonDto;
 
 import javax.persistence.*;

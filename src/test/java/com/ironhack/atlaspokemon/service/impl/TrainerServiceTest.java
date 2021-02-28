@@ -101,7 +101,7 @@ class TrainerServiceTest {
 
         TrainerDTO trainerDTO = trainerService.createTrainer(trainer.toTrainerDto());
 
-        assertEquals(trainerRepository.getOne(trainerDTO.getId()).getAge(), trainerDTO.getAge());
+        assertEquals(trainer.getAge(), trainerDTO.getAge());
     }
 
     @Test

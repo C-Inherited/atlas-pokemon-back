@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -45,6 +46,7 @@ public class Trainer {
         this.hobby = hobby;
         this.age = age;
         this.imageUrl = imageUrl;
+        this.team = new ArrayList<>();
     }
 
     public TrainerDTO toTrainerDto() {
@@ -52,8 +54,8 @@ public class Trainer {
     }
 
     public CompleteTrainerDto toCompleteTrainerDto() {
-        return new CompleteTrainerDto(this.getId(), this.getName(), this.getHobby(), this.getAge(), this.getImageUrl(), this.team.stream().map(pokemon ->
-                new PokemonDto(pokemon.getId(), pokemon.getPokemonId())).collect(Collectors.toList()));
+        return new CompleteTrainerDto(this.getId(), this.getName(), this.getHobby(), this.getAge(),
+                this.getImageUrl(),this.team.stream().map(pokemon -> new PokemonDto(pokemon.getId(), pokemon.getPokemonId())).collect(Collectors.toList()));
     }
 
     public void checkMaximumPokemon() {
