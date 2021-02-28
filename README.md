@@ -12,6 +12,7 @@ http://localhost:8080/swagger-ui.html#
 | PETITION | ROUTE | DESCRIPTION | RESPONSE CODES  
 | ------------- | ------------- | ------------- | ------------- |
 |GET | /trainers | Retrieve all trainers details without their pokemon team | 
+|GET | /trainers/pokemon | Retrieve all trainers details with their pokemon team | 
 |GET | /trainer/{id} | Retrieve a trainer by id without their pokemon team | 404 Not found if trainer not present
 |GET | /trainer/{id}/pokemon | Retrieve a trainer by id with their pokemon team | 404 Not found if trainer not present
 |POST | /trainer | Create a trainer , id is not necessary!| 
