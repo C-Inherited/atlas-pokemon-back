@@ -112,4 +112,9 @@ class TrainerServiceTest {
 
         verify(trainerRepository).deleteById(3);
     }
+
+    //TODO
+    // getAllTrainersWithPokemon
+    // getCompleteTrainerById
+    // deleteTrainer
 }
