@@ -17,6 +17,7 @@ import org.springframework.web.server.ResponseStatusException;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -66,8 +67,18 @@ class PokemonServiceTest {
 
     @Test
     void deletePokemon() {
+        when(pokemonRepository.findById(pokemon.getId())).thenReturn(Optional.of(pokemon));
+
+        pokemonService.deletePokemon(pokemon.getId());
+
+        verify(pokemonRepository).delete(pokemon);
+    }
 
 
+    @Test
+    void deletePokemon_throw_NoPokemonException() {
+        when(pokemonRepository.findById(pokemon.getId())).thenReturn(Optional.empty());
 
+        assertThrows(ResponseStatusException.class, () -> pokemonService.deletePokemon(pokemon.getId()));
     }
 }

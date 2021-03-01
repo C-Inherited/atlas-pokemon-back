@@ -117,7 +117,7 @@ class TrainerServiceTest {
     void getCompleteTrainerById_Exception() {
         when(trainerRepository.findById(trainer.getId())).thenReturn(Optional.empty());
 
-        assertThrows(ResponseStatusException.class, ()-> trainerService.getTrainerById(trainer.getId()));
+        assertThrows(ResponseStatusException.class, ()-> trainerService.getCompleteTrainerById(trainer.getId()));
 
     }
 
