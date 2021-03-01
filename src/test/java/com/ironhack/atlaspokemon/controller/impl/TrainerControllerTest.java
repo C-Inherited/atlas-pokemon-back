@@ -111,12 +111,15 @@ class TrainerControllerTest {
         when(trainerService.createTrainer(trainer)).thenReturn(trainer);
 
         String body = objectMapper.writeValueAsString(trainer);
-        mockMvc
+        MvcResult result =  mockMvc
                 .perform(post("/trainer")
                         .content(body)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())
                 .andReturn();
+
+        assertEquals("{\"id\":1,\"name\":\"Paul\",\"hobby\":\"x\",\"age\":27,\"imageUrl\":\"image\"}", result.getResponse().getContentAsString());
+
     }
 
     @Test
