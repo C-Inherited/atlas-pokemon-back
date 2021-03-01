@@ -30,48 +30,24 @@ public class CompleteTrainerDto {
         return id;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getHobby() {
         return hobby;
     }
 
-    public void setHobby(String hobby) {
-        this.hobby = hobby;
-    }
-
     public Integer getAge() {
         return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
     }
 
     public String getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
-
     public List<PokemonDto> getTeam() {
         return team;
-    }
-
-    public void setTeam(List<PokemonDto> team) {
-        this.team = team;
     }
 
     @Override
@@ -82,8 +58,4 @@ public class CompleteTrainerDto {
         return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(hobby, that.hobby) && Objects.equals(age, that.age) && Objects.equals(imageUrl, that.imageUrl) && Objects.equals(team, that.team);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, hobby, age, imageUrl, team);
-    }
 }

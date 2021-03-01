@@ -51,24 +51,12 @@ public class TrainerDTO {
         return hobby;
     }
 
-    public void setHobby(String hobby) {
-        this.hobby = hobby;
-    }
-
     public Integer getAge() {
         return age;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
-    }
-
     public String getImageUrl() {
         return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
     }
 
     @Override
@@ -79,8 +67,4 @@ public class TrainerDTO {
         return Objects.equals(id, that.id) && Objects.equals(name, that.name) && Objects.equals(hobby, that.hobby) && Objects.equals(age, that.age) && Objects.equals(imageUrl, that.imageUrl);
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, hobby, age, imageUrl);
-    }
 }

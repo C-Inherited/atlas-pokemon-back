@@ -35,8 +35,6 @@ public class Pokemon {
         return new PokemonDto(this.id,this.pokemonId);
     }
 
-
-
     public Integer getId() {
         return id;
     }
@@ -49,16 +47,8 @@ public class Pokemon {
         return pokemonId;
     }
 
-    public void setPokemonId(Integer pokemonId) {
-        this.pokemonId = pokemonId;
-    }
-
     public Trainer getTrainer() {
         return trainer;
-    }
-
-    public void setTrainer(Trainer trainer) {
-        this.trainer = trainer;
     }
 
     @Override
@@ -67,10 +57,5 @@ public class Pokemon {
         if (o == null || getClass() != o.getClass()) return false;
         Pokemon pokemon = (Pokemon) o;
         return Objects.equals(id, pokemon.id) && Objects.equals(pokemonId, pokemon.pokemonId) && Objects.equals(trainer, pokemon.trainer);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, pokemonId, trainer);
     }
 }
