@@ -13,6 +13,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,9 +39,15 @@ class TrainerServiceTest {
 
     List<Trainer> trainers = new ArrayList<>();
     List<Pokemon> pokemones = new ArrayList<>();
+    private Trainer trainer;
+    private CompleteTrainerDto completeTrainerDto;
+    private TrainerDTO trainerDto;
 
     @BeforeEach
     void setUp() {
+        trainer = new Trainer(1,"nerea","leer",27,"image");
+        completeTrainerDto = new CompleteTrainerDto(1,"nerea","leer", 27, "image", List.of());
+       trainerDto = new TrainerDTO(1,"nerea","leer",27,"image");
         trainers.addAll(List.of(
                 new Trainer(1, "Paul", "eat haku ? <Optional>", 27, "image"),
                 new Trainer(2, "Celia", "pasear haku", 27, "image")
@@ -81,40 +88,62 @@ class TrainerServiceTest {
     }
 
     @Test
-    void getTrainerById() {
-        when(trainerRepository.findById(2)).thenReturn(Optional.of(trainers.get(1)));
+    void getTrainerById_correct() {
+        when(trainerRepository.findById(trainer.getId())).thenReturn(Optional.ofNullable(trainer));
 
-        TrainerDTO trainerDTO = trainerService.getTrainerById(2);
+        TrainerDTO trainerDTOResponse = trainerService.getTrainerById(trainer.getId());
 
-        assertEquals(trainers.get(1).getName(), trainerDTO.getName());
+        assertEquals(trainerDto, trainerDTOResponse);
     }
 
     @Test
+    void getTrainerById_exception() {
+        when(trainerRepository.findById(trainer.getId())).thenReturn(Optional.empty());
+
+        assertThrows(ResponseStatusException.class, ()-> trainerService.getTrainerById(trainer.getId()));
+    }
+
+
+    @Test
     void getCompleteTrainerById() {
+        when(trainerRepository.findById(trainer.getId())).thenReturn(Optional.ofNullable(trainer));
+
+        CompleteTrainerDto completeTrainerDtoResponse = trainerService.getCompleteTrainerById(trainer.getId());
+
+        assertEquals(completeTrainerDto,completeTrainerDtoResponse);
+    }
+
+    @Test
+    void getCompleteTrainerById_Exception() {
+        when(trainerRepository.findById(trainer.getId())).thenReturn(Optional.empty());
+
+        assertThrows(ResponseStatusException.class, ()-> trainerService.getTrainerById(trainer.getId()));
 
     }
 
     @Test
     void createTrainer() {
-        Trainer trainer = new Trainer(3, "Haku", "Being a human now", 15, "image-dog");
         when(trainerRepository.save(trainer)).thenReturn(trainer);
 
-        TrainerDTO trainerDTO = trainerService.createTrainer(trainer.toTrainerDto());
+        TrainerDTO trainerDTOResponse = trainerService.createTrainer(trainer.toTrainerDto());
 
-        assertEquals(trainer.getAge(), trainerDTO.getAge());
+        assertEquals(trainerDto, trainerDTOResponse);
     }
 
     @Test
     void deleteTrainer() {
-        when(trainerRepository.findById(3)).thenReturn(Optional.of(new Trainer(3, "Haku", "Being a human now", 15, "image-dog")));
+     when(trainerRepository.findById(trainer.getId())).thenReturn(Optional.ofNullable(trainer));
 
-        trainerService.deleteTrainer(3);
+       trainerService.deleteTrainer(trainer.getId());
 
-        verify(trainerRepository).deleteById(3);
+       verify(trainerRepository).deleteById(trainer.getId());
     }
 
-    //TODO
-    // getAllTrainersWithPokemon
-    // getCompleteTrainerById
-    // deleteTrainer
+    @Test
+    void deleteTrainer_Exception() {
+        when(trainerRepository.findById(trainer.getId())).thenReturn(Optional.empty());
+
+        assertThrows(ResponseStatusException.class, ()-> trainerService.deleteTrainer(trainer.getId()));
+    }
+
 }

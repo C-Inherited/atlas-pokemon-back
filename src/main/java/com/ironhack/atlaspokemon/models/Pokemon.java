@@ -20,6 +20,11 @@ public class Pokemon {
     public Pokemon() {
     }
 
+    public Pokemon(Integer id, Integer pokemonId, Trainer trainer) {
+        this.id = id;
+        this.pokemonId = pokemonId;
+        this.trainer = trainer;
+    }
 
     public Pokemon(Integer pokemonId, Trainer trainer) {
         this.pokemonId = pokemonId;
