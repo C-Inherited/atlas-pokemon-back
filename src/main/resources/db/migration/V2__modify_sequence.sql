@@ -1,0 +1,2 @@
+ALTER SEQUENCE pokemon_id_seq RESTART WITH 50;
+ALTER SEQUENCE trainer_id_seq RESTART WITH 50;
