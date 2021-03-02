@@ -1,7 +1,6 @@
 create table trainer
 (
-    id SERIAL PRIMARY KEY
-        primary key,
+    id SERIAL PRIMARY KEY,
     age int null,
     hobby varchar(255) null,
     image_url varchar(255) null,
@@ -10,8 +9,7 @@ create table trainer
 
 create table pokemon
 (
-    id SERIAL PRIMARY KEY
-        primary key,
+    id SERIAL PRIMARY KEY,
     pokemon_id int null,
     trainer_id int null,
     constraint FKqv1tudyd69fjhvv9m1eij01hu
