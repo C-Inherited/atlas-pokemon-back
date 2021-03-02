@@ -1,6 +1,6 @@
 create table trainer
 (
-    id int auto_increment
+    id SERIAL PRIMARY KEY
         primary key,
     age int null,
     hobby varchar(255) null,
@@ -10,7 +10,7 @@ create table trainer
 
 create table pokemon
 (
-    id int auto_increment
+    id SERIAL PRIMARY KEY
         primary key,
     pokemon_id int null,
     trainer_id int null,
