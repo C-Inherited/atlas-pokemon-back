@@ -49,7 +49,7 @@ public class TrainerController implements ITrainerController {
 
     @DeleteMapping("/trainer/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public void createTrainer(@PathVariable(name = "id") Integer id) {
+    public void deleteTrainer(@PathVariable(name = "id") Integer id) {
         trainerService.deleteTrainer(id);
     }
 }

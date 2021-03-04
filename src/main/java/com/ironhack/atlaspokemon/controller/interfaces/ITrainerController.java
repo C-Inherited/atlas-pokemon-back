@@ -11,5 +11,5 @@ public interface ITrainerController {
     public TrainerDTO getTrainer(Integer id);
     public CompleteTrainerDto getTrainerWithPokemon(Integer id);
     public TrainerDTO createTrainer(TrainerDTO trainerdto);
-    public void createTrainer(Integer id);
+    public void deleteTrainer(Integer id);
 }

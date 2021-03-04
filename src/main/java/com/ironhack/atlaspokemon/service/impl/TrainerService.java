@@ -3,6 +3,7 @@ package com.ironhack.atlaspokemon.service.impl;
 import com.ironhack.atlaspokemon.dto.CompleteTrainerDto;
 import com.ironhack.atlaspokemon.dto.TrainerDTO;
 import com.ironhack.atlaspokemon.models.Trainer;
+import com.ironhack.atlaspokemon.repository.PokemonRepository;
 import com.ironhack.atlaspokemon.repository.TrainerRepository;
 import com.ironhack.atlaspokemon.service.interfaces.ITrainerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class TrainerService implements ITrainerService {
 
     @Autowired
     private TrainerRepository trainerRepository;
+
+    @Autowired
+    private PokemonRepository pokemonRepository;
 
     public List<TrainerDTO> getAllTrainers() {
         return trainerRepository.findAll().stream().map(Trainer::toTrainerDto).collect(Collectors.toList());
@@ -46,9 +50,13 @@ public class TrainerService implements ITrainerService {
     }
 
     public void deleteTrainer(Integer id) {
-        trainerRepository.findById(id).orElseThrow(() -> {
+        Trainer trainer = trainerRepository.findById(id).orElseThrow(() -> {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Trainer not found");
         });
+        trainer.getTeam().forEach(pokemon -> {
+                    pokemonRepository.deleteById(pokemon.getId());
+                }
+        );
         trainerRepository.deleteById(id);
     }
 

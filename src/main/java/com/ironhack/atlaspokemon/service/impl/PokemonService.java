@@ -32,6 +32,6 @@ public class PokemonService implements IPokemonService {
         Pokemon pokemon = pokemonRepository.findById(id).orElseThrow(() -> {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Pokemon not found");
         });
-        pokemonRepository.delete(pokemon);
+        pokemonRepository.deleteById(pokemon.getId());
     }
 }

@@ -23,9 +23,7 @@ public class Trainer {
     private Integer age;
     private String imageUrl;
 
-// se borran en cascada los pokemon y despues el trainer
-
-    @OneToMany(mappedBy = "trainer", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "trainer")
     private List<Pokemon> team;
 
     public Trainer() {
