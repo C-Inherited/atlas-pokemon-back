@@ -71,7 +71,7 @@ class PokemonServiceTest {
 
         pokemonService.deletePokemon(pokemon.getId());
 
-        verify(pokemonRepository).delete(pokemon);
+        verify(pokemonRepository).deleteById(pokemon.getId());
     }
 
 
